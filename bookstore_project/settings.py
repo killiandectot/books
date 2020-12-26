@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # 3rd-party
+    
+    'crispy_forms',
+    
     # Local
     
     'users.apps.UsersConfig',
@@ -128,7 +132,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ] # for local dev
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for prod
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Django crispy forms
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
